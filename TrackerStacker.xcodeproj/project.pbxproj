@@ -21,6 +21,7 @@
 		F0DA3DA324195B7600968788 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA3DA224195B7600968788 /* ItemsViewController.swift */; };
 		F0DA3DA524195B9100968788 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA3DA424195B9100968788 /* DetailViewController.swift */; };
 		F0DA3DA7241964A400968788 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA3DA6241964A400968788 /* LoginViewController.swift */; };
+		F0DA3E282421CFBA00968788 /* LoginFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA3E272421CFBA00968788 /* LoginFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		F0DA3DA224195B7600968788 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		F0DA3DA424195B9100968788 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F0DA3DA6241964A400968788 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F0DA3E272421CFBA00968788 /* LoginFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				F0DA3D9A24195B2400968788 /* Item.swift */,
 				F0DA3D9C24195B3200968788 /* ItemCell.swift */,
 				F0DA3D9E24195B4400968788 /* ItemStore.swift */,
+				F0DA3E272421CFBA00968788 /* LoginFile.swift */,
 				F0DA3DA024195B5700968788 /* ImageStore.swift */,
 				F0DA3DA224195B7600968788 /* ItemsViewController.swift */,
 				F0DA3DA424195B9100968788 /* DetailViewController.swift */,
@@ -284,6 +287,7 @@
 				F0DA3D6D24195A6A00968788 /* SceneDelegate.swift in Sources */,
 				F0DA3DA324195B7600968788 /* ItemsViewController.swift in Sources */,
 				F0DA3DA124195B5700968788 /* ImageStore.swift in Sources */,
+				F0DA3E282421CFBA00968788 /* LoginFile.swift in Sources */,
 				F0DA3D9D24195B3200968788 /* ItemCell.swift in Sources */,
 				F0DA3DA524195B9100968788 /* DetailViewController.swift in Sources */,
 			);
