@@ -7,26 +7,61 @@
 //
 
 import UIKit
+import SQLite
 
 class ItemsViewController: UITableViewController, UINavigationControllerDelegate {
+
+//TODO: Create Items DB here, pass Category name from CategoriesVC as DB name
+
+//Receives categoriesList from CategoriesVC
+    var categoryNames = [String]()
     
-    let itemStore = ItemStore()
-    let imageStore = ImageStore()
+    var itemsList: ItemStore!
+    
+    var imageStore = ImageStore()
     
     @IBAction func addNewItem(_ sender: UIBarButtonItem) {
-        // Create a new item and add it to the store
-        let newItem = itemStore.createItem()
-        // Figure out where that item is in the array
-        if let index = itemStore.allItems.firstIndex(of: newItem) {
+        
+//Creates popup for adding new item
+        let NewItemAlert = UIAlertController(title: "Add a new item!", message: "", preferredStyle: .alert)
+        NewItemAlert.addTextField { (textField) in
+        textField.placeholder = "Item Name"
+        textField.keyboardType = .default
+        }
+        NewItemAlert.addTextField { (textField) in
+        textField.placeholder = "Quantity"
+        textField.keyboardType = .default
+        }
+        NewItemAlert.addTextField { (textField) in
+        textField.placeholder = "Notes"
+        textField.keyboardType = .default
+        }
+        NewItemAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        NewItemAlert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (action) -> Void in
+            var itemName = NewItemAlert.textFields![0] as UITextField
+            var itemQty = NewItemAlert.textFields![1] as UITextField
+            var itemNotes = NewItemAlert.textFields![2] as UITextField
+            
+            var x = itemName.text!
+            var y = Int(itemQty.text!)
+            var z = String?(itemNotes.text!)
+
+//Add new category into categoriesList array
+            self.itemsList.createItem(itemName: x, itemQty: y!, itemNotes: z)
+            
+//Insert this new row into the table
+            if let index = self.itemsList.firstIndex(of: itemName.text!) {
                 let indexPath = IndexPath(row: index, section: 0)
-                // Insert this new row into the table
-        tableView.insertRows(at: [indexPath], with: .automatic) }
+                self.tableView.insertRows(at: [indexPath], with: .automatic) }
+        }))
+        
+        self.present(NewItemAlert, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-            return itemStore.allItems.count
+        return itemsList.count
     }
-    
+
     override func tableView(_ tableView: UITableView,
     cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Create an instance of UITableViewCell, with default appearance
@@ -34,11 +69,20 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
         // Set the text on the cell with the description of the item // that is at the nth index of items, where n = row this cell
         // will appear in on the tableview
-        let item = itemStore.allItems[indexPath.row]
+        let item = itemsList[indexPath.row]
         // Configure the cell with the Item
-        cell.nameLabel.text = item.name
-        cell.serialNumberLabel.text = item.serialNumber
-        cell.valueLabel.text = "$\(item.valueInDollars)"
+        cell.nameLabel.text = item
+//        cell.quantityLabel.text = 
+        
+        
+//Alert label for low stock when quantity is 0-3
+//        cell.quantityLabel.text = qtyList[0]
+//        let quant = qtyList[0]
+//        if quant! < 4 && quant! >= 0{
+//            cell.LowStockLabel.isHidden = false
+//        } else {
+//            cell.LowStockLabel.isHidden = true
+//        }
         
         return cell
     }
@@ -49,14 +93,13 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 65
     }
-    
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     // If the table view is asking to commit a delete command...
         if editingStyle == .delete {
-            let item = itemStore.allItems[indexPath.row]
+            let item = itemsList[indexPath.row]
             
-            let title = "Delete \(item.name)?"
+//            let title = "Delete \(item.name)?"
             let message = "Are you sure you want to delete this item?"
             let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
             
@@ -64,12 +107,12 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
             ac.addAction(cancelAction)
             
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {(action) -> Void in
-                // Remove the item from the store
-            self.itemStore.removeItem(item)
+                
+        // Remove the item from the store
+//            self.itemsList(item)
 
-                // Remove the item's image from the image store
-            self.imageStore.deleteImage(forKey: item.itemKey)
-                // Also remove that row from the table view with an animation
+
+        // Also remove that row from the table view with an animation
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         })
             ac.addAction(deleteAction)
@@ -77,36 +120,15 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
             present(ac, animated: true, completion: nil)
         }
     }
-    override func tableView(_ tableView: UITableView,
-                            moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
-        
-    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // If the triggered segue is the "showItem" segue
-        switch segue.identifier {
-        case "showItem"?:
-            // Figure out which row was just tapped
-            if let row = tableView.indexPathForSelectedRow?.row {
-            // Get the item associated with this row and pass it along
-                let item = itemStore.allItems[row]
-                let detailViewController = segue.destination as! DetailViewController
-                detailViewController.item = item
-                detailViewController.imageStore = imageStore
-            }
-        default:
-            preconditionFailure("Unexpected segue identifier.") }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        navigationItem.leftBarButtonItem = editButtonItem
-    }
 }
 
