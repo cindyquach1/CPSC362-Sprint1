@@ -7,17 +7,14 @@
 //
 
 import UIKit
-import SQLite
+import CoreData
+
+// TODO: Something wrong w/ login
 
 class LoginViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    var database: Connection!
-    
-    let usersTable = Table("users")
-    let id = Expression<Int>("id")
-    let name = Expression<String>("name")
-    let email = Expression<String>("email")
-    let password = Expression<String>("password")
+    var usersListCD = [User]()
+    let fetchUsers: NSFetchRequest<User> = User.fetchRequest()
     
     @IBOutlet var NameTextField: UITextField!
     @IBOutlet var EmailTextField: UITextField!
@@ -37,9 +34,10 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate, UIT
 //Check if login info is valid through text file, if so, go to next segue
 //if not, create alert of some kind for incorrect login info
         do {
-            let users = try self.database.prepare(self.usersTable)
-            for user in users {
-                if (RegEmail == "\(user[self.email])" && RegPassword == "\(user[self.password])") {
+            let users = try PersistenceService.context.fetch(fetchUsers)
+            self.usersListCD = users
+            for user in usersListCD {
+                if (RegEmail ==  user.email && RegPassword == user.password){
                 //Takes user to next page if user info matches in database
                     let CategoriesVC = self.storyboard?.instantiateViewController(withIdentifier: "CategoriesViewController")
                     self.navigationController?.pushViewController(CategoriesVC!, animated: true)
@@ -58,15 +56,6 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate, UIT
             print(error)
         }
         
-//Prints out user info from database
-        do {
-            let users = try self.database.prepare(self.usersTable)
-            for user in users {
-                print("userID: \(user[self.id]),  Name: \(user[self.name]), Email: \(user[self.email]), Password: \(user[self.password])")
-            }
-            } catch {
-                print(error)
-            }
     }
     
     @IBAction func CreateNewButton(_ sender: UIButton) {
@@ -76,41 +65,15 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate, UIT
         NameTextField.text = ""
         EmailTextField.text = ""
         PasswordTextField.text = ""
-
-//Create database table (Use only once, then comment out)
-//        let createTable = self.usersTable.create { (table) in
-//            table.column(self.id, primaryKey: true)
-//            table.column(self.name)
-//            table.column(self.email, unique: true)
-//            table.column(self.password)
-//        }
-//
-//        do {
-//            try self.database.run(createTable)
-//            print("Created Table")
-//        } catch {
-//            print(error)
-//        }
-
-//Adds new user to table
-        let insertUser = self.usersTable.insert(self.name <- RegName, self.email <- RegEmail, self.password <- RegPassword)
-        do {
-            try self.database.run(insertUser)
-            print("INSERTED USER")
-        } catch {
-            print(error)
-        }
-
-        do {
-            let users = try self.database.prepare(self.usersTable)
-            for user in users {
-                print("userID: \(user[self.id]), Name: \(user[self.name]), Email: \(user[self.email]), Password: \(user[self.password])")
-            }
-        } catch {
-            print(error)
-        }
+        
+        let userCD = User(context: PersistenceService.context)
+        userCD.name = RegName
+        userCD.email = RegEmail
+        userCD.password = RegPassword
+        PersistenceService.saveContext()
+        self.usersListCD.append(userCD)
+        
     }
-    
     
 //something for the keyboard popup when clicking on the textfield, don't worry if the keyboard doesn't pop up on simulator, it's responding to your actual keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -118,18 +81,21 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate, UIT
         return true
     }
     
-//Loads screen
-    override func viewDidLoad() {
-        super.viewDidLoad()        
-//Connects to database
+// DELETES EVERYTHING IN CORE DATA!
+    func deleteAllData() {
         do {
-            let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            let fileUrl = documentDirectory.appendingPathComponent("users").appendingPathExtension("sqlite3")
-            let database = try Connection(fileUrl.path)
-            self.database = database
-            print(fileUrl)
+            let users = try PersistenceService.context.fetch(self.fetchUsers)
+            print("Items in Core Data:")
+            for i in users {
+                PersistenceService.context.delete(i)
+                print(i.email!)
+            }
+            print(users.count)
+            PersistenceService.saveContext()
+
         } catch {
             print(error)
         }
     }
+
 }
