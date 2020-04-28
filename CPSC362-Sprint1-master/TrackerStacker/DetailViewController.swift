@@ -11,12 +11,12 @@ import UIKit
 import CoreData
 
 // TODO: 4/4
-// -Login
 // -Connect relationships properly
 // -Details page--passing on the right item info
+// -Save changes on details page
 // -title matching for page selections
 //      -fix date created
-// -images
+// -images --save to core data as well
 
 
 

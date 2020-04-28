@@ -16,6 +16,7 @@
 		F0BC712524382F7E009E4ED2 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC712224382F7E009E4ED2 /* Item+CoreDataProperties.swift */; };
 		F0BC712624382F7E009E4ED2 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC712324382F7E009E4ED2 /* Category+CoreDataProperties.swift */; };
 		F0BC712724382F7E009E4ED2 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC712424382F7E009E4ED2 /* User+CoreDataProperties.swift */; };
+		F0C37FC82457E5A5009A2749 /* MasterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C37FC72457E5A5009A2749 /* MasterListViewController.swift */; };
 		F0DA3D6B24195A6A00968788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA3D6A24195A6A00968788 /* AppDelegate.swift */; };
 		F0DA3D6D24195A6A00968788 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA3D6C24195A6A00968788 /* SceneDelegate.swift */; };
 		F0DA3D7224195A6A00968788 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0DA3D7024195A6A00968788 /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 		F0BC712224382F7E009E4ED2 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0BC712324382F7E009E4ED2 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0BC712424382F7E009E4ED2 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F0C37FC72457E5A5009A2749 /* MasterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterListViewController.swift; sourceTree = "<group>"; };
 		F0DA3D6724195A6A00968788 /* TrackerStacker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackerStacker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0DA3D6A24195A6A00968788 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0DA3D6C24195A6A00968788 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				F0DA3DA024195B5700968788 /* ImageStore.swift */,
 				F0F6EC1A2427FCB100C18E6E /* CategoriesViewController.swift */,
 				F0DA3DA224195B7600968788 /* ItemsViewController.swift */,
+				F0C37FC72457E5A5009A2749 /* MasterListViewController.swift */,
 				F0DA3DA424195B9100968788 /* DetailViewController.swift */,
 				F0DA3DA6241964A400968788 /* LoginViewController.swift */,
 				F0BC710424356F95009E4ED2 /* InitialViewController.swift */,
@@ -311,6 +314,7 @@
 			files = (
 				F0BC709924353CB2009E4ED2 /* TrackerStacker.xcdatamodeld in Sources */,
 				F0DA3DA7241964A400968788 /* LoginViewController.swift in Sources */,
+				F0C37FC82457E5A5009A2749 /* MasterListViewController.swift in Sources */,
 				F0F6EC1B2427FCB100C18E6E /* CategoriesViewController.swift in Sources */,
 				F0DA3D6B24195A6A00968788 /* AppDelegate.swift in Sources */,
 				F0DA3D6D24195A6A00968788 /* SceneDelegate.swift in Sources */,

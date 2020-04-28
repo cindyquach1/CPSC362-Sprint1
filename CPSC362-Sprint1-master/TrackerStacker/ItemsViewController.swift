@@ -13,11 +13,18 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
 
     var itemsListCD = [Item]()
     var imageStore = ImageStore()
+
     
     let fetchItems: NSFetchRequest<Item> = Item.fetchRequest()
     let itemCD = Item(context: PersistenceService.context)
     let category = Category(context: PersistenceService.context)
 
+    
+//TODO: Increment/decrement quantity value
+    @IBAction func IncrementButton(_ sender: UIStepper) {
+        
+    }
+    
     @IBAction func addNewItem(_ sender: UIBarButtonItem) {
 
 // Creates popup for adding new item
@@ -51,14 +58,13 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
 // Links category to user
             self.category.addToItems(self.itemCD)
             
-            
 // Insert this new row into the table
             if let index = self.itemsListCD.firstIndex(of: self.itemCD){
                 let indexPath = IndexPath(row: index, section: 0)
                 self.tableView.insertRows(at: [indexPath], with: .automatic) }
-
+            
         }))
-
+        
         self.present(NewItemAlert, animated: true)
     }
 
@@ -69,12 +75,13 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
     override func tableView(_ tableView: UITableView,
     cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 // Create an instance of UITableViewCell, with default appearance
-// Get a new or recycled cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
 
 // Configure the cell with the Item
         cell.nameLabel.text = itemsListCD[indexPath.row].name
         cell.quantityLabel.text = String(itemsListCD[indexPath.row].quantity)
+        
+        qHolder = cell.quantityLabel
 
 // Alert label for low stock when quantity is 0-3
         let quant = Int(cell.quantityLabel.text!)
@@ -90,6 +97,7 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 65
+    
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -150,11 +158,11 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
             let items = try PersistenceService.context.fetch(self.fetchItems)
             print("Items in Core Data:")
             for i in items {
-                PersistenceService.context.delete(i)
-                print(i.name!)
+//                PersistenceService.context.delete(i)
+                print(i.name)
             }
             print(items.count)
-            PersistenceService.saveContext()
+//            PersistenceService.saveContext()
 
         } catch {
             print(error)
