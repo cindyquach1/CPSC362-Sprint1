@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  TrackerStacker
 //
-//  Created by Cindy Quach on 4/3/20.
+//  Created by Cindy Quach on 5/1/20.
 //  Copyright © 2020 Cindy Quach. All rights reserved.
 //
 //
@@ -18,8 +18,8 @@ extension Category {
     }
 
     @NSManaged public var item: String?
-    @NSManaged public var user: User?
     @NSManaged public var items: NSSet?
+    @NSManaged public var user: User?
 
 }
 

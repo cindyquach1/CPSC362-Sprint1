@@ -590,7 +590,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="65" id="wx4-1x-ao4" customClass="ItemCell" customModule="TrackerStacker" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MasterItemCell" rowHeight="65" id="wx4-1x-ao4" customClass="ItemCell" customModule="TrackerStacker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wx4-1x-ao4" id="Zcj-LS-o1D">
@@ -634,7 +634,7 @@
                                     <outlet property="LowStockLabel" destination="uTr-sp-kwi" id="znQ-Le-JkI"/>
                                     <outlet property="nameLabel" destination="otv-Wl-6bx" id="UPF-L1-jna"/>
                                     <outlet property="quantityLabel" destination="Mjv-hW-BKx" id="5xB-mM-WdA"/>
-                                    <segue destination="3QA-b9-Ac7" kind="show" id="5Xq-Dy-pCM"/>
+                                    <segue destination="3QA-b9-Ac7" kind="show" identifier="showMasterItem" id="5Xq-Dy-pCM"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -654,6 +654,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mgV-tk-aXv"/>
+        <segue reference="5Xq-Dy-pCM"/>
     </inferredMetricsTieBreakers>
 </document>

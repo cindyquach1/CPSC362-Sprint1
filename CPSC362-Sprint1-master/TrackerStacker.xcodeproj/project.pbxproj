@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F030B5CE245CBA9B00FAA9AC /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B5C8245CBA9B00FAA9AC /* Category+CoreDataClass.swift */; };
+		F030B5CF245CBA9B00FAA9AC /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B5C9245CBA9B00FAA9AC /* Category+CoreDataProperties.swift */; };
+		F030B5D0245CBA9B00FAA9AC /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B5CA245CBA9B00FAA9AC /* Item+CoreDataClass.swift */; };
+		F030B5D1245CBA9B00FAA9AC /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B5CB245CBA9B00FAA9AC /* Item+CoreDataProperties.swift */; };
+		F030B5D2245CBA9B00FAA9AC /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B5CC245CBA9B00FAA9AC /* User+CoreDataClass.swift */; };
+		F030B5D3245CBA9B00FAA9AC /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B5CD245CBA9B00FAA9AC /* User+CoreDataProperties.swift */; };
 		F0BC709924353CB2009E4ED2 /* TrackerStacker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0BC709724353CB2009E4ED2 /* TrackerStacker.xcdatamodeld */; };
 		F0BC70D12435522F009E4ED2 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC70D02435522F009E4ED2 /* PersistenceService.swift */; };
-		F0BC70FE243560C2009E4ED2 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC70F8243560C2009E4ED2 /* User+CoreDataClass.swift */; };
-		F0BC7100243560C2009E4ED2 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC70FA243560C2009E4ED2 /* Item+CoreDataClass.swift */; };
-		F0BC7102243560C2009E4ED2 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC70FC243560C2009E4ED2 /* Category+CoreDataClass.swift */; };
 		F0BC710524356F95009E4ED2 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC710424356F95009E4ED2 /* InitialViewController.swift */; };
-		F0BC712524382F7E009E4ED2 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC712224382F7E009E4ED2 /* Item+CoreDataProperties.swift */; };
-		F0BC712624382F7E009E4ED2 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC712324382F7E009E4ED2 /* Category+CoreDataProperties.swift */; };
-		F0BC712724382F7E009E4ED2 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC712424382F7E009E4ED2 /* User+CoreDataProperties.swift */; };
 		F0C37FC82457E5A5009A2749 /* MasterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C37FC72457E5A5009A2749 /* MasterListViewController.swift */; };
 		F0DA3D6B24195A6A00968788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA3D6A24195A6A00968788 /* AppDelegate.swift */; };
 		F0DA3D6D24195A6A00968788 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA3D6C24195A6A00968788 /* SceneDelegate.swift */; };
@@ -50,15 +50,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F030B5C8245CBA9B00FAA9AC /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F030B5C9245CBA9B00FAA9AC /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F030B5CA245CBA9B00FAA9AC /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F030B5CB245CBA9B00FAA9AC /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F030B5CC245CBA9B00FAA9AC /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F030B5CD245CBA9B00FAA9AC /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0BC709824353CB2009E4ED2 /* TrackerStacker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrackerStacker.xcdatamodel; sourceTree = "<group>"; };
 		F0BC70D02435522F009E4ED2 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
-		F0BC70F8243560C2009E4ED2 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F0BC70FA243560C2009E4ED2 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F0BC70FC243560C2009E4ED2 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F0BC710424356F95009E4ED2 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
-		F0BC712224382F7E009E4ED2 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F0BC712324382F7E009E4ED2 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F0BC712424382F7E009E4ED2 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0C37FC72457E5A5009A2749 /* MasterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterListViewController.swift; sourceTree = "<group>"; };
 		F0DA3D6724195A6A00968788 /* TrackerStacker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackerStacker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0DA3D6A24195A6A00968788 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,12 +130,12 @@
 		F0DA3D6924195A6A00968788 /* TrackerStacker */ = {
 			isa = PBXGroup;
 			children = (
-				F0BC712424382F7E009E4ED2 /* User+CoreDataProperties.swift */,
-				F0BC70F8243560C2009E4ED2 /* User+CoreDataClass.swift */,
-				F0BC70FC243560C2009E4ED2 /* Category+CoreDataClass.swift */,
-				F0BC712324382F7E009E4ED2 /* Category+CoreDataProperties.swift */,
-				F0BC70FA243560C2009E4ED2 /* Item+CoreDataClass.swift */,
-				F0BC712224382F7E009E4ED2 /* Item+CoreDataProperties.swift */,
+				F030B5C8245CBA9B00FAA9AC /* Category+CoreDataClass.swift */,
+				F030B5C9245CBA9B00FAA9AC /* Category+CoreDataProperties.swift */,
+				F030B5CA245CBA9B00FAA9AC /* Item+CoreDataClass.swift */,
+				F030B5CB245CBA9B00FAA9AC /* Item+CoreDataProperties.swift */,
+				F030B5CC245CBA9B00FAA9AC /* User+CoreDataClass.swift */,
+				F030B5CD245CBA9B00FAA9AC /* User+CoreDataProperties.swift */,
 				F0DA3D6A24195A6A00968788 /* AppDelegate.swift */,
 				F0BC70D02435522F009E4ED2 /* PersistenceService.swift */,
 				F0DA3D6C24195A6A00968788 /* SceneDelegate.swift */,
@@ -314,22 +314,22 @@
 			files = (
 				F0BC709924353CB2009E4ED2 /* TrackerStacker.xcdatamodeld in Sources */,
 				F0DA3DA7241964A400968788 /* LoginViewController.swift in Sources */,
+				F030B5D3245CBA9B00FAA9AC /* User+CoreDataProperties.swift in Sources */,
 				F0C37FC82457E5A5009A2749 /* MasterListViewController.swift in Sources */,
 				F0F6EC1B2427FCB100C18E6E /* CategoriesViewController.swift in Sources */,
 				F0DA3D6B24195A6A00968788 /* AppDelegate.swift in Sources */,
+				F030B5CE245CBA9B00FAA9AC /* Category+CoreDataClass.swift in Sources */,
+				F030B5D2245CBA9B00FAA9AC /* User+CoreDataClass.swift in Sources */,
+				F030B5D0245CBA9B00FAA9AC /* Item+CoreDataClass.swift in Sources */,
 				F0DA3D6D24195A6A00968788 /* SceneDelegate.swift in Sources */,
-				F0BC7100243560C2009E4ED2 /* Item+CoreDataClass.swift in Sources */,
-				F0BC7102243560C2009E4ED2 /* Category+CoreDataClass.swift in Sources */,
+				F030B5CF245CBA9B00FAA9AC /* Category+CoreDataProperties.swift in Sources */,
 				F0BC710524356F95009E4ED2 /* InitialViewController.swift in Sources */,
-				F0BC70FE243560C2009E4ED2 /* User+CoreDataClass.swift in Sources */,
-				F0BC712524382F7E009E4ED2 /* Item+CoreDataProperties.swift in Sources */,
 				F0DA3DA324195B7600968788 /* ItemsViewController.swift in Sources */,
 				F0BC70D12435522F009E4ED2 /* PersistenceService.swift in Sources */,
 				F0DA3DA124195B5700968788 /* ImageStore.swift in Sources */,
-				F0BC712724382F7E009E4ED2 /* User+CoreDataProperties.swift in Sources */,
 				F0DA3D9D24195B3200968788 /* ItemCell.swift in Sources */,
 				F0DA3DA524195B9100968788 /* DetailViewController.swift in Sources */,
-				F0BC712624382F7E009E4ED2 /* Category+CoreDataProperties.swift in Sources */,
+				F030B5D1245CBA9B00FAA9AC /* Item+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

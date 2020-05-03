@@ -8,8 +8,6 @@
 
 
 // TODO: 4/27
-// -Master list view controller file
-// -search bar
 // -increment button
 //
 
@@ -22,8 +20,6 @@ class CategoriesViewController: UITableViewController, UINavigationControllerDel
     let fetchCategories: NSFetchRequest<Category> = Category.fetchRequest()
     let categoriesCD = Category(context: PersistenceService.context)
     let user = User(context: PersistenceService.context)
-    
-//TODO: dynamic greeting username replace w/ actual name
     
     @IBAction func addNewItem(_ sender: UIBarButtonItem) {
 // Creates popup for adding new category
@@ -40,7 +36,6 @@ class CategoriesViewController: UITableViewController, UINavigationControllerDel
             self.categoriesCD.item = String(categoryName.text!)
             PersistenceService.saveContext()
             self.categoriesListCD.append(self.categoriesCD)
-            
             
 // Links category to user
             self.user.addToCategory(self.categoriesCD)

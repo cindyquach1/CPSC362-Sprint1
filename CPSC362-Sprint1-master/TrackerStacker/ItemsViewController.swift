@@ -6,6 +6,9 @@
 //  Copyright © 2020 Cindy Quach. All rights reserved.
 //
 
+//TODO: 5/3
+// -fix bug --passing on correct info to DetailsVC (note: it works perfectly fine in MasterVC -> DetailsVC)
+
 import UIKit
 import CoreData
 
@@ -19,7 +22,6 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
     let itemCD = Item(context: PersistenceService.context)
     let category = Category(context: PersistenceService.context)
 
-    
 //TODO: Increment/decrement quantity value
     @IBAction func IncrementButton(_ sender: UIStepper) {
         
@@ -55,8 +57,6 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
             PersistenceService.saveContext()
             self.itemsListCD.append(self.itemCD)
             
-// Links category to user
-            self.category.addToItems(self.itemCD)
             
 // Insert this new row into the table
             if let index = self.itemsListCD.firstIndex(of: self.itemCD){
@@ -80,8 +80,7 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
 // Configure the cell with the Item
         cell.nameLabel.text = itemsListCD[indexPath.row].name
         cell.quantityLabel.text = String(itemsListCD[indexPath.row].quantity)
-        
-        qHolder = cell.quantityLabel
+
 
 // Alert label for low stock when quantity is 0-3
         let quant = Int(cell.quantityLabel.text!)
@@ -103,6 +102,8 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 // If the table view is asking to commit a delete command...
         if editingStyle == .delete {
+            
+            deleteAllData()
             let item = itemsListCD[indexPath.row]
 
             let title = "Delete?"
@@ -117,8 +118,6 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
 // Remove the item from core data
             PersistenceService.context.delete(item)
             PersistenceService.saveContext()
-                
-            self.category.removeFromItems(item)
 
 // Removes from array and table
             self.itemsListCD.remove(at: indexPath.row)
@@ -146,7 +145,7 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
                 let item = itemsListCD[row]
                 let detailViewController = segue.destination as! DetailViewController
                 detailViewController.item = item
-                detailViewController.imageStore = imageStore
+//                detailViewController.imageStore = imageStore
             }
         default:
             preconditionFailure("Unexpected segue identifier.") }
@@ -158,11 +157,11 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
             let items = try PersistenceService.context.fetch(self.fetchItems)
             print("Items in Core Data:")
             for i in items {
-//                PersistenceService.context.delete(i)
-                print(i.name)
+                PersistenceService.context.delete(i)
+//                print(i.name)
             }
             print(items.count)
-//            PersistenceService.saveContext()
+            PersistenceService.saveContext()
 
         } catch {
             print(error)
