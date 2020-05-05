@@ -10,9 +10,6 @@
 import UIKit
 import CoreData
 
-// -Save changes on details page
-// -images --save to core data as well
-
 class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var itemsListCD = [Item]()
@@ -36,8 +33,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     
     @IBAction func takePicture(_ sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
-        // If the device has a camera, take a picture; otherwise,
-        // just pick from photo library
+// If the device has a camera, take a picture; otherwise,
+// just pick from photo library
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePicker.sourceType = .camera
         }
@@ -48,6 +45,12 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         //Place image picker on the screen
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    var i: Item! {
+        didSet {
+            navigationItem.title = i.name
+        }
     }
 
     var imageStore: ImageStore!
@@ -70,25 +73,10 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-//        do {
-            
-// TODO: Fix this: prepare segue, get item selected from prev VC
-//            let items = try PersistenceService.context.fetch(self.fetchItems)
-//            self.itemsListCD = items
-            nameField.text = item.name
-            quantityField.text = item.notes
-            notesField.text = String(item.quantity)
-            dateLabel.text = dateFormatter.string(from: item.date!)
-//        } catch {
-//            print(error)
-//        }
-        
-        // Get the item key
-//        let key = item.itemKey
-        // If there is an associated image with the item
-        // display it on the image view
-//        let imageToDisplay = imageStore.image(forKey: key)
-//        imageView.image = imageToDisplay
+        nameField.text = item.name
+        quantityField.text = item.notes
+        notesField.text = String(item.quantity)
+        dateLabel.text = dateFormatter.string(from: item.date!)
         
     }
     
@@ -97,15 +85,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         //Clear first responder
         view.endEditing(true)
-        
-        // "Save" changes to item
-//        item.name = nameField.text ?? ""
-//        item.notes = quantityField.text
-//        if let valueText = notesField.text,
-//            let value = numberFormatter.number(from: valueText) { item.quantity = value.intValue
-//        } else {
-//            item.quantity = 0 }
-//        }
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -119,9 +99,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         guard let image = info[.originalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
-        
-// Store the image in the ImageStore for the item's key
-//        imageStore.setImage(image, forKey: item.itemKey)
 
 // Put that image on the screen in the image view
         imageView.image = image
@@ -129,5 +106,5 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
 // you must call this dismiss method
         dismiss(animated: true, completion: nil)
     }
-}
+
 }

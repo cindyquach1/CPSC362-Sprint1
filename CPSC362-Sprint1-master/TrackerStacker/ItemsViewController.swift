@@ -114,7 +114,6 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
 // If the table view is asking to commit a delete command...
         if editingStyle == .delete {
             
-            deleteAllData()
             let item = itemsListCD[indexPath.row]
 
             let title = "Delete?"
