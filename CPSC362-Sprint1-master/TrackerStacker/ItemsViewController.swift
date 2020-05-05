@@ -57,7 +57,6 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
             PersistenceService.saveContext()
             self.itemsListCD.append(self.itemCD)
             
-            
 // Insert this new row into the table
             if let index = self.itemsListCD.firstIndex(of: self.itemCD){
                 let indexPath = IndexPath(row: index, section: 0)

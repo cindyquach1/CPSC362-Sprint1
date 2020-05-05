@@ -13,7 +13,7 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
     
     @IBOutlet weak var searchBar: UISearchBar!
     var searching = false
-    var searchedItem = [String]()
+    var searchedItem = [Item]()
     var itemsListCD = [Item]()
     
     let fetchItems: NSFetchRequest<Item> = Item.fetchRequest()
@@ -30,6 +30,12 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
         do {
             let items = try PersistenceService.context.fetch(self.fetchItems)
             self.itemsListCD = items
+        for items in itemsListCD
+        {
+            if let idx = itemsListCD.firstIndex(where: { $0.value(forKey: "name") == nil }) {
+                itemsListCD.remove(at: idx)
+            }
+        }
         } catch {
             print(error)
         }
@@ -44,32 +50,42 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
 
     override func tableView(_ tableView: UITableView,
     cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-// Create an instance of UITableViewCell, with default appearance
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MasterItemCell", for: indexPath) as! ItemCell
         
 // Configure the cell with the Item
-        cell.nameLabel.text = self.itemsListCD[indexPath.row].name
-        cell.quantityLabel.text = String(itemsListCD[indexPath.row].quantity)
+        if itemsListCD[indexPath.row].name != nil
+        {
+            // Create an instance of UITableViewCell, with default appearance
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MasterItemCell", for: indexPath) as! ItemCell
+            
+            if searching {
+                cell.nameLabel.text = self.searchedItem[indexPath.row].name
+                cell.quantityLabel.text = String(searchedItem[indexPath.row].quantity)
+            } else {
+                cell.nameLabel.text = self.itemsListCD[indexPath.row].name
+                cell.quantityLabel.text = String(itemsListCD[indexPath.row].quantity)
+            }
+            
+    // Alert label for low stock when quantity is 0-3
+        
+            let quant = Int(cell.quantityLabel.text!)
+            if quant! < 4 && quant! >= 0 {
+                cell.LowStockLabel.isHidden = false
+            } else {
+                cell.LowStockLabel.isHidden = true
+            }
+            
 
-// Alert label for low stock when quantity is 0-3
-        let quant = Int(cell.quantityLabel.text!)
-        if quant! < 4 && quant! >= 0 {
-            cell.LowStockLabel.isHidden = false
-        } else {
-            cell.LowStockLabel.isHidden = true
+            
+            
+            return cell
         }
         
-        if searching {
-            cell.nameLabel.text = self.searchedItem[indexPath.row]
-        } else {
-            cell.nameLabel.text = self.itemsListCD[indexPath.row].name
-        }
-        
-        return cell
+        return UITableViewCell()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 65
         
@@ -130,9 +146,12 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
         do {
             let items = try PersistenceService.context.fetch(self.fetchItems)
             print("Items in Core Data:")
-            for i in items {
+            for i in items as [NSManagedObject]{
 //                PersistenceService.context.delete(i)
-                print(i.name)
+                if let name = i.value(forKey: "name")
+                {
+                    print(name)
+                }
             }
             print(items.count)
 //            PersistenceService.saveContext()
@@ -146,14 +165,10 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
 extension MasterListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        var itemNamesArr = [String]()
-        for i in itemsListCD {
-            itemNamesArr.append(i.name!)
-        }
-        
-        searchedItem = itemNamesArr.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
+        searchedItem = itemsListCD.filter({$0.name!.lowercased().prefix(searchText.count) == searchText.lowercased()})
         searching = true
         tableView.reloadData()
+        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
