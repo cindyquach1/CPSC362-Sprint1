@@ -73,10 +73,7 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
             } else {
                 cell.LowStockLabel.isHidden = true
             }
-            
 
-            
-            
             return cell
         }
         
@@ -140,6 +137,11 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
         default:
             preconditionFailure("Unexpected segue identifier.") }
     }
+
+    @IBAction func exportList(_ sender: UIBarButtonItem) {
+        
+    }
+    
     
 // DELETES EVERYTHING IN CORE DATA!
     func deleteAllData() {
@@ -160,6 +162,7 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
             print(error)
         }
     }
+    
 }
 
 extension MasterListViewController: UISearchBarDelegate {

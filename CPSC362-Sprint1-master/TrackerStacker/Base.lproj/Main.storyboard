@@ -643,7 +643,13 @@
                             <outlet property="delegate" destination="AkI-SL-XOp" id="YBN-Zb-bct"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master Item List" id="Mzf-7U-ypi"/>
+                    <navigationItem key="navigationItem" title="Master Item List" id="Mzf-7U-ypi">
+                        <barButtonItem key="rightBarButtonItem" title="Export" style="plain" id="Sw1-NY-slx">
+                            <connections>
+                                <action selector="exportList:" destination="AkI-SL-XOp" id="WDx-I4-egd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="WgB-JE-fey" id="rmh-dn-OR5"/>
                     </connections>
