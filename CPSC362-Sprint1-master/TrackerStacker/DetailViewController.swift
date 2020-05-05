@@ -10,15 +10,8 @@
 import UIKit
 import CoreData
 
-// TODO: 4/4
-// -Connect relationships properly
-// -Details page--passing on the right item info
 // -Save changes on details page
-// -title matching for page selections
-//      -fix date created
 // -images --save to core data as well
-
-
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
