@@ -139,9 +139,74 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
     }
 
     @IBAction func exportList(_ sender: UIBarButtonItem) {
-        
+        let exportString = createExportString()
+        saveAndExport(exportString: exportString)
     }
     
+    
+    func createExportString() -> String {
+        
+        var itemDate: Date?
+        var itemName: String?
+        var itemQty: Int?
+        var itemNote: String?
+        
+        var export: String = NSLocalizedString("Date,               Item Name,Quantity,Note \n", comment: "")
+        
+        for i in itemsListCD as [NSManagedObject]{
+            if let name = i.value(forKey: "name")
+            {
+                itemName = name as? String
+            }
+            if let qty = i.value(forKey: "quantity")
+            {
+                itemQty = qty as? Int
+            }
+            if let note = i.value(forKey: "notes")
+            {
+                itemNote = note as? String
+            }
+            if let date = i.value(forKey: "date")
+            {
+                itemDate = date as? Date
+            }
+            export += "\(itemDate!),\(itemName!),\(itemQty!),\(itemNote!) \n"
+        }
+        print("Successfully exported!")
+        return export
+    }
+    
+    func saveAndExport(exportString: String)
+    {
+        let exportFilePath = NSTemporaryDirectory() + "myItemsList.csv"
+        let exportFileURL = NSURL(fileURLWithPath: exportFilePath)
+        FileManager.default.createFile(atPath: exportFilePath, contents: NSData() as Data, attributes: nil)
+        var fileHandler: FileHandle? = nil
+        do{
+            fileHandler = try FileHandle(forWritingTo:exportFileURL as URL)
+        } catch{
+            print("Error with file handling")
+        }
+        
+        if fileHandler != nil{
+            fileHandler!.seekToEndOfFile()
+            let csvData = exportString.data(using: String.Encoding.utf8, allowLossyConversion: false)
+            fileHandler!.write(csvData!)
+            fileHandler!.closeFile()
+            let firstActivityItem = NSURL(fileURLWithPath: exportFilePath)
+                let activityViewController : UIActivityViewController = UIActivityViewController(
+                    activityItems: [firstActivityItem], applicationActivities: nil)
+
+                activityViewController.excludedActivityTypes = [
+                    UIActivity.ActivityType.assignToContact,
+                    UIActivity.ActivityType.saveToCameraRoll,
+                ]
+
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+            print("Sucessfully file handled!")
+    
+    }
     
 // DELETES EVERYTHING IN CORE DATA!
     func deleteAllData() {
