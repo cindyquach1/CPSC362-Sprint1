@@ -22,10 +22,6 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
     let itemCD = Item(context: PersistenceService.context)
     let category = Category(context: PersistenceService.context)
 
-//TODO: Increment/decrement quantity value
-    @IBAction func IncrementButton(_ sender: UIStepper) {
-        
-    }
     
     @IBAction func addNewItem(_ sender: UIBarButtonItem) {
 
@@ -91,7 +87,8 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
 // Configure the cell with the Item
         cell.nameLabel.text = itemsListCD[indexPath.row].name
         cell.quantityLabel.text = String(itemsListCD[indexPath.row].quantity)
-
+        
+        
 
 // Alert label for low stock when quantity is 0-3
         let quant = Int(cell.quantityLabel.text!)
