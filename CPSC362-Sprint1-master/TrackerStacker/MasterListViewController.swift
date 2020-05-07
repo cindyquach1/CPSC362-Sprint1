@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import MessageUI
 
-class MasterListViewController: UITableViewController, UINavigationControllerDelegate {
+class MasterListViewController: UITableViewController, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     var searching = false
@@ -151,7 +152,7 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
         var itemQty: Int?
         var itemNote: String?
         
-        var export: String = NSLocalizedString("Date,               Item Name,Quantity,Note \n", comment: "")
+        var export: String = NSLocalizedString("Date,Item Name,Quantity,Note \n", comment: "")
         
         for i in itemsListCD as [NSManagedObject]{
             if let name = i.value(forKey: "name")
@@ -196,7 +197,6 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
             let firstActivityItem = NSURL(fileURLWithPath: exportFilePath)
                 let activityViewController : UIActivityViewController = UIActivityViewController(
                     activityItems: [firstActivityItem], applicationActivities: nil)
-
                 activityViewController.excludedActivityTypes = [
                     UIActivity.ActivityType.assignToContact,
                     UIActivity.ActivityType.saveToCameraRoll,
@@ -205,7 +205,6 @@ class MasterListViewController: UITableViewController, UINavigationControllerDel
                 self.present(activityViewController, animated: true, completion: nil)
             }
             print("Sucessfully file handled!")
-    
     }
     
 // DELETES EVERYTHING IN CORE DATA!

@@ -23,10 +23,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kk7-4A-Lmf">
-                                            <rect key="frame" x="160" y="16" width="94" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </stepper>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fm3-y1-0Hf" userLabel="Quantity Label">
                                             <rect key="frame" x="352" y="22" width="42" height="21"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -680,7 +676,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mgV-tk-aXv"/>
+        <segue reference="5Xq-Dy-pCM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Image" width="512" height="512"/>
