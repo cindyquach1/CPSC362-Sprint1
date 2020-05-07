@@ -64,18 +64,18 @@ class ItemsViewController: UITableViewController, UINavigationControllerDelegate
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        do {
-            let items = try PersistenceService.context.fetch(self.fetchItems)
-            self.itemsListCD = items
-        for items in itemsListCD
-        {
-            if let idx = itemsListCD.firstIndex(where: { $0.value(forKey: "name") == nil }) {
-                itemsListCD.remove(at: idx)
-            }
-        }
-        } catch {
-            print(error)
-        }
+//        do {
+//            let items = try PersistenceService.context.fetch(self.fetchItems)
+//            self.itemsListCD = items
+//        for items in itemsListCD
+//        {
+//            if let idx = itemsListCD.firstIndex(where: { $0.value(forKey: "name") == nil }) {
+//                itemsListCD.remove(at: idx)
+//            }
+//        }
+//        } catch {
+//            print(error)
+//        }
         return itemsListCD.count
     }
 
